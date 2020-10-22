@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <img src="TITLE.png" alt="title" class = 'amongtitle'>
+    <img src="subtitle.png" alt="subtitle" class = 'subamongtitle'>
+</head>
+<body>
+    <div class="score">POINTS: <span>0</span>
+    <div class = allcrew>
+        <div>
+            <img src = "crewblue.png" class = "crew blue"/>
+            <div>
+              <img src = "knife.png" class = "knife" id = "zero"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewteal.png" class = "crew teal"/>
+            <div>
+                <img src = "knife.png" class = "knife" id = "one"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewred.png" class = "crew red"/> 
+            <div>
+                <img src = "knife.png" class = "knife" id = "two"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewgreen.png" class = "crew green"/> 
+            <div>
+                <img src = "knife.png" class = "knife" id = "three"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewpink.png" class = "crew pink"/> 
+            <div>
+                <img src = "knife.png" class = "knife" id = "four"/>
+            </div>
+        </div>   
+        <div >
+            <img src = "crewpurple.png" class = "crew purple"/>
+            <div>
+                <img src = "knife.png" class = "knife" id = "five"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewyellow.png" class = "crew yellow"/>
+            <div>
+                <img src = "knife.png" class = "knife" id = "six"/>
+            </div>
+        </div>
+        <div>
+            <img src = "crewwhite.png" class = "crew white"/>
+            <div>
+                <img src = "knife.png" class = "knife" id = "seven"/>
+            </div> 
+        </div>
+        <div>
+            <img src = "brightyellowcrew.png" class = "crew brightyellow"/>
+            <div>
+                <img src = "knife.png" class = "knife" id = "eight"/>
+            </div>
+        </div>
+    </div>
+    <div class = "buttons">
+        <button class="play">PLAY</button>
+        <button class="stop">STOP</button>  
+    </div>
+    <div class = "cursor">
+        <img src = "magnifyingglass.png"/>
+    </div>
+    <div>
+        <script>
+
+            const playBtn = document.querySelector(".buttons .play");
+            const crews = document.querySelectorAll(".crew");
+            const stopBtn = document.querySelector(".buttons .stop");
+            const score = document.querySelector(".score span");
+            const cursor = document.querySelector(".cursor img");
+
+            window.addEventListener("mousemove", (e) => {
+                cursor.style.top = e.pageY + "px";
+                cursor.style.left = e.pageX + "px";
+            });
+        
+            playBtn.addEventListener("click", ()=>{
+                playBtn.style.display = "none";  
+                stopBtn.style.display = "inline-block";
+                
+                let crew;
+                let points = 0;
+
+                const startGame = setInterval(() => {
+                    document.getElementById("zero").style.display = "none"
+                    document.getElementById("one").style.display = "none"
+                    document.getElementById("two").style.display = "none"
+                    document.getElementById("three").style.display = "none"
+                    document.getElementById("four").style.display = "none"
+                    document.getElementById("five").style.display = "none"
+                    document.getElementById("six").style.display = "none"
+                    document.getElementById("seven").style.display = "none"
+                    document.getElementById("eight").style.display = "none"
+                    
+                    let arrayNo = Math.floor(Math.random() * 9);
+                    crew = crews[arrayNo];
+                    let array = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight"]
+                    
+
+                    document.getElementById(array[arrayNo]).style.display = "inline";
+                  
+                }, 700); 
+
+                window.addEventListener("click", (e) => { 
+                    if(e.target === crew){
+                        points += 1
+                    }
+                    score.innerText = points
+
+                });
+                
+                stopBtn.addEventListener("click", () => {
+                clearInterval(startGame);
+                stopBtn.style.display = "none";
+                playBtn.style.display = "inline-block";
+                score.innerText = 0;
+                }); 
+            });        
+        </script>
+    </div>
+</body>
