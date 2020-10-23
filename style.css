@@ -98,11 +98,18 @@ body {
 
 .knife {
     position: relative;
-    z-index: 1;
+    z-index: -1;
     height: 45px;
     top: -100px;
-    left: 45px;
+    left: 30px;
+    animation-name: knife;
+    animation-duration: 1.5s;
 } 
+
+@keyframes knife {
+    from {left: 35px;}
+    to {left: 60px;}
+  }
 
 
  .buttons {
